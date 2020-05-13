@@ -10,6 +10,7 @@ class RegistroDeSintoma{
         @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long = 0
         var data: LocalDate? = null
+        var nivel: Int = 0
         @ManyToOne
         @JoinColumn(name = "sintoma_id")
         var sintoma: Sintoma? = null
