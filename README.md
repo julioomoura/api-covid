@@ -4,7 +4,7 @@
 - Spring Boot
 - Gradle
 - Kotlin
-- MySQL
+- PostgreSQL
 
 ## Recomendações
 
