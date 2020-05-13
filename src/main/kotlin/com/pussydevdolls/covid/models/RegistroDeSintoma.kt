@@ -5,15 +5,15 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "registro_de_sintoma")
-data class RegistroDeSintoma(
+class RegistroDeSintoma{
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long,
-        val data: LocalDate,
+        var id: Long = 0
+        var data: LocalDate? = null
         @ManyToOne
         @JoinColumn(name = "sintoma_id")
-        val sintoma: Sintoma,
+        var sintoma: Sintoma? = null
         @ManyToOne
         @JoinColumn(name = "usuario_id")
-        val usuario: Usuario
-)
+        var usuario: Usuario? = null
+}
