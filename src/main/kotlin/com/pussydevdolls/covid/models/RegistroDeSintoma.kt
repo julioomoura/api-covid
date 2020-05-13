@@ -3,6 +3,8 @@ package com.pussydevdolls.covid.models
 import java.time.LocalDate
 import javax.persistence.*
 
+@Entity
+@Table(name = "registro_de_sintoma")
 data class RegistroDeSintoma(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
