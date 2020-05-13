@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/sintomas")
+@CrossOrigin
 class SintomaController (
     private val sintomaService: SintomaService
 ){
