@@ -1,0 +1,136 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "COVID - PussyDevDolls"
+paths:
+  '/login/{cpf}':
+    post:
+      tags:
+        - 'login'
+      summary: 'Faz login'
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "cpf"
+          type: string
+          required: true
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: '#/definitions/Usuario'
+  '/sintomas':
+    get:
+      tags:
+        - 'sintoma'
+      summary: Retorna todos os sintomas
+      description: Retorna todos os sintomas
+      responses:
+        200:
+          description: 'OK'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sintoma'
+    post:
+      tags:
+        - 'sintoma'
+      summary: Cria um novo sintoma
+      description: Cria um novo sintoma
+      produces:
+        - application/json
+      parameters:
+        - name: Novo sintoma
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SintomaParaCriacao'
+      responses:
+        200:
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/Sintoma'
+  '/usuarios/{cpf}/sintomas/{id}':
+    post:
+      tags:
+        - 'registro de sintoma'
+      summary: Registra um novo sintoma por usuário e data
+      description: Registra um novo sintoma por usuário e data
+      parameters:
+        - name: cpf
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          required: true
+        - name: registro_de_sintoma
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/RegistroDeSintomaParaCriacao'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RegistroDeSintoma'
+definitions:
+  RegistroDeSintoma:
+    type: object
+    description: registro de sintoma do pussydevdolls
+    properties:
+      id:
+        description: id do registro
+        type: integer
+        format: int64
+      data:
+        description: data do registro de sintoma
+        type: string
+        format: date
+      nivel:
+        description: nível de intensidade do sintoma
+        type: integer
+      sintoma:
+        $ref: '#/definitions/Sintoma'
+      usuario:
+        $ref: '#/definitions/Usuario'
+  RegistroDeSintomaParaCriacao:
+    type: object
+    description: registro de sintoma para criação
+    properties:
+      data:
+        description: data do registro de sintoma
+        type: string
+        format: date
+      nivel:
+        description: nível de intensidade do sintoma
+        type: integer
+  Sintoma:
+    type: object
+    description: sintoma do pussydevdolls
+    properties:
+      id:
+        description: id do sintoma
+        type: integer
+        format: int64
+      nome:
+        description: nome do sintoma
+        type: string
+  SintomaParaCriacao:
+    type: object
+    description: sintoma do pussydevdolls
+    properties:
+      nome:
+        description: nome do sintoma
+        type: string
+  Usuario:
+    type: object
+    description: usuario do pussydevdolls
+    properties:
+      cpf:
+        type: string
