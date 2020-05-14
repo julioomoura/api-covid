@@ -15,6 +15,6 @@ class RegistroDeSintoma{
         @JoinColumn(name = "sintoma_id")
         var sintoma: Sintoma? = null
         @ManyToOne
-        @JoinColumn(name = "usuario_id")
+        @JoinColumn(name = "usuario_cpf")
         var usuario: Usuario? = null
 }
