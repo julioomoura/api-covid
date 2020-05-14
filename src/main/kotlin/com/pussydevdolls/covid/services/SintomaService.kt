@@ -1,21 +1,9 @@
 package com.pussydevdolls.covid.services
 
 import com.pussydevdolls.covid.models.Sintoma
-import com.pussydevdolls.covid.repositories.SintomaRepository
-import org.springframework.stereotype.Service
 
-@Service
-class SintomaService (
-    private val sintomaRepository: SintomaRepository
-) {
+interface SintomaService {
 
-    fun retornaSintomas() = sintomaRepository.findAll()
-
-    fun criaSintoma(nome: String): Sintoma {
-
-        val novoSintoma = Sintoma().apply { this.nome = nome.toLowerCase().capitalize() }
-
-        return sintomaRepository.save(novoSintoma)
-    }
-
+    fun retornaSintomas(): MutableIterable<Sintoma>
+    fun criaSintoma(nome: String): Sintoma
 }

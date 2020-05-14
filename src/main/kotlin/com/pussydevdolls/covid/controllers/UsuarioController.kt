@@ -1,7 +1,7 @@
 package com.pussydevdolls.covid.controllers
 
 import com.pussydevdolls.covid.models.Usuario
-import com.pussydevdolls.covid.services.UsuarioService
+import com.pussydevdolls.covid.services.impl.UsuarioServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/login")
 @CrossOrigin
 class UsuarioController (
-    private val usuarioService: UsuarioService
+    private val usuarioService: UsuarioServiceImpl
 ){
 
     @PostMapping("/{cpf}")

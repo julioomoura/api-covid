@@ -2,7 +2,7 @@ package com.pussydevdolls.covid.controllers
 
 import com.pussydevdolls.covid.dtos.RegistroDeSintomaDTO
 import com.pussydevdolls.covid.models.RegistroDeSintoma
-import com.pussydevdolls.covid.services.RegistroDeSintomaService
+import com.pussydevdolls.covid.services.impl.RegistroDeSintomaServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @CrossOrigin
 class RegistroDeSintomaController (
-    private val service: RegistroDeSintomaService
+    private val service: RegistroDeSintomaServiceImpl
 ) {
     @PostMapping("/usuarios/{cpf}/sintomas/{id}")
     fun registrarSintoma(@PathVariable cpf: String,

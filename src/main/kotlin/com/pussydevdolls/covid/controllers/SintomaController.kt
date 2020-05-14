@@ -2,7 +2,7 @@ package com.pussydevdolls.covid.controllers
 
 import com.pussydevdolls.covid.dtos.SintomaDTO
 import com.pussydevdolls.covid.models.Sintoma
-import com.pussydevdolls.covid.services.SintomaService
+import com.pussydevdolls.covid.services.impl.SintomaServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/sintomas")
 @CrossOrigin
 class SintomaController (
-    private val sintomaService: SintomaService
+    private val sintomaService: SintomaServiceImpl
 ){
 
     @GetMapping
