@@ -1,5 +1,6 @@
 package com.pussydevdolls.covid.services.impl
 
+import com.pussydevdolls.covid.exceptions.NaoEncontradoException
 import com.pussydevdolls.covid.models.Usuario
 import com.pussydevdolls.covid.repositories.UsuarioRepository
 import com.pussydevdolls.covid.services.UsuarioService
@@ -7,15 +8,21 @@ import org.springframework.stereotype.Service
 
 @Service
 class UsuarioServiceImpl (
-    private val usuarioRepository: UsuarioRepository
+    private val repository: UsuarioRepository
 ): UsuarioService {
 
     override fun criaUsuario(cpf: String): Usuario {
-        val usuario = usuarioRepository.findById(cpf)
+        val usuario = repository.findById(cpf)
 
         return when (usuario.isPresent) {
-            false -> usuarioRepository.save(Usuario(cpf))
+            false -> repository.save(Usuario(cpf))
             true -> usuario.get()
+        }
+    }
+
+    override fun findById(cpf: String): Usuario {
+        return repository.findById(cpf).orElseThrow {
+            NaoEncontradoException("Usuário não encontrado")
         }
     }
 }

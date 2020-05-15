@@ -1,5 +1,6 @@
 package com.pussydevdolls.covid.services.impl
 
+import com.pussydevdolls.covid.exceptions.NaoEncontradoException
 import com.pussydevdolls.covid.models.Sintoma
 import com.pussydevdolls.covid.repositories.SintomaRepository
 import com.pussydevdolls.covid.services.SintomaService
@@ -7,15 +8,26 @@ import org.springframework.stereotype.Service
 
 @Service
 class SintomaServiceImpl (
-    private val sintomaRepository: SintomaRepository
+    private val repository: SintomaRepository
 ): SintomaService {
 
-    override fun retornaSintomas() = sintomaRepository.findAll()
+    override fun retornaSintomas() = repository.findAll()
 
     override fun criaSintoma(nome: String): Sintoma {
 
-        val novoSintoma = Sintoma().apply { this.nome = nome.toLowerCase().capitalize() }
+        val nomeCapitalized = nome.toLowerCase().capitalize()
 
-        return sintomaRepository.save(novoSintoma)
+        val sintomaFromDB = repository.findByNome(nomeCapitalized)
+
+        return when(sintomaFromDB.isPresent) {
+            true -> sintomaFromDB.get()
+            false -> repository.save(Sintoma().apply { this.nome = nomeCapitalized})
+        }
+    }
+
+    override fun findById(id: Long): Sintoma {
+        return repository.findById(id).orElseThrow {
+            throw NaoEncontradoException("Sintoma não encontrado")
+        }
     }
 }
