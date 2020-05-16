@@ -1,6 +1,7 @@
 package com.pussydevdolls.covid.services.impl
 
 import com.pussydevdolls.covid.dtos.RegistroDeSintomaDTO
+import com.pussydevdolls.covid.exceptions.NaoEncontradoException
 import com.pussydevdolls.covid.exceptions.RegistroDeSintomaJaExisteException
 import com.pussydevdolls.covid.models.RegistroDeSintoma
 import com.pussydevdolls.covid.repositories.RegistroDeSintomaRepository
@@ -33,6 +34,12 @@ class RegistroDeSintomaServiceImpl(
         }
 
         return repository.save(registro)
+    }
+
+    override fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): RegistroDeSintoma {
+        return repository.findByUsuarioCpfAndData(cpf, data).orElseThrow {
+            NaoEncontradoException("Registro de sintoma não encontrado")
+        }
     }
 
     private fun buscaRegistroPorCpfSintomaIdEData(cpf: String, id: Long, data: LocalDate) = repository.findByUsuarioCpfAndSintomaIdAndData(cpf, id, data)

@@ -10,4 +10,5 @@ import java.util.*
 interface RegistroDeSintomaRepository: CrudRepository<RegistroDeSintoma, Long> {
 
     fun findByUsuarioCpfAndSintomaIdAndData(userCpf: String, sintomaId: Long, data: LocalDate): Optional<RegistroDeSintoma>
+    fun findByUsuarioCpfAndData(cpf: String, data: LocalDate): Optional<RegistroDeSintoma>
 }
