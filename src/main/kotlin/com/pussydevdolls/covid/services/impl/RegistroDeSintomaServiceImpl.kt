@@ -2,6 +2,7 @@ package com.pussydevdolls.covid.services.impl
 
 import com.pussydevdolls.covid.dtos.RegistroDeSintomaDTO
 import com.pussydevdolls.covid.exceptions.NaoEncontradoException
+import com.pussydevdolls.covid.exceptions.NivelInvalidoException
 import com.pussydevdolls.covid.exceptions.RegistroDeSintomaJaExisteException
 import com.pussydevdolls.covid.models.RegistroDeSintoma
 import com.pussydevdolls.covid.repositories.RegistroDeSintomaRepository
@@ -22,6 +23,8 @@ class RegistroDeSintomaServiceImpl(
         val usuario = usuarioService.findById(cpf)
         val sintoma = sintomaService.findById(id)
 
+        validaNivelDeSintoma(registroDeSintoma.nivel)
+
         buscaRegistroPorCpfSintomaIdEData(cpf, id, registroDeSintoma.data!!).ifPresent {
             throw RegistroDeSintomaJaExisteException("Já existe um registro nessa data para esse usuário e sintoma")
         }
@@ -39,6 +42,12 @@ class RegistroDeSintomaServiceImpl(
     override fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): RegistroDeSintoma {
         return repository.findByUsuarioCpfAndData(cpf, data).orElseThrow {
             NaoEncontradoException("Registro de sintoma não encontrado")
+        }
+    }
+
+    private fun validaNivelDeSintoma(nivel: Int) {
+        if (nivel > 5 || nivel < 0) {
+            throw NivelInvalidoException("O nível precisa estar entre 0 e 5")
         }
     }
 
