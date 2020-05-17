@@ -6,7 +6,14 @@ plugins {
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
 	kotlin("plugin.jpa") version "1.3.72"
+	jacoco
 }
+
+jacoco {
+	toolVersion = "0.8.5"
+	reportsDir = file("$buildDir/reports/jacoco")
+}
+
 
 group = "com.pussydevdolls"
 version = "0.0.1-SNAPSHOT"
@@ -26,11 +33,12 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
-	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("com.h2database:h2:1.4.200")
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.withType<KotlinCompile> {
