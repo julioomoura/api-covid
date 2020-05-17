@@ -9,4 +9,6 @@ class Sintoma {
         var id: Long = 0
         @Column(unique = true)
         var nome: String = ""
+        @Column(name = "url_imagem")
+        var urlImagem: String = ""
 }

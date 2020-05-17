@@ -13,7 +13,7 @@ class SintomaServiceImpl (
 
     override fun retornaSintomas() = repository.findAll()
 
-    override fun criaSintoma(nome: String): Sintoma {
+    override fun criaSintoma(nome: String, urlImagem: String): Sintoma {
 
         val nomeCapitalized = nome.toLowerCase().capitalize()
 
@@ -21,7 +21,10 @@ class SintomaServiceImpl (
 
         return when(sintomaFromDB.isPresent) {
             true -> sintomaFromDB.get()
-            false -> repository.save(Sintoma().apply { this.nome = nomeCapitalized})
+            false -> repository.save(Sintoma().apply {
+                this.nome = nomeCapitalized
+                this.urlImagem = urlImagem
+            })
         }
     }
 
