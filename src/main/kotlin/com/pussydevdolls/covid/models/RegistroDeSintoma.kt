@@ -1,5 +1,7 @@
 package com.pussydevdolls.covid.models
 
+import org.hibernate.annotations.Cascade
+import org.hibernate.annotations.CascadeType
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -13,8 +15,10 @@ class RegistroDeSintoma{
         var nivel: Int = 0
         @ManyToOne
         @JoinColumn(name = "sintoma_id")
+        @Cascade(CascadeType.ALL)
         var sintoma: Sintoma? = null
         @ManyToOne
         @JoinColumn(name = "usuario_cpf")
+        @Cascade(CascadeType.ALL)
         var usuario: Usuario? = null
 }
