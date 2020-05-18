@@ -53,6 +53,27 @@ paths:
           description: 'OK'
           schema:
             $ref: '#/definitions/Sintoma'
+  '/usuario/{cpf}/sintomas/registros':
+    get:
+      tags:
+        - 'registro de sintoma'
+      summary: Retorna o registro de sintoma por usuário e dta
+      description: Retorna o registro de sintoma por usuário e dta
+      parameters:
+        - name: cpf
+          in: path
+          type: string
+          required: true
+        - name: data
+          in: query
+          type: string
+          format: date
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/RegistroDeSintoma'
   '/usuarios/{cpf}/sintomas/{id}':
     post:
       tags:

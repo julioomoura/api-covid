@@ -22,7 +22,7 @@ class SintomaController (
 
     @PostMapping
     fun criaSintoma(@RequestBody sintoma: SintomaDTO): ResponseEntity<Sintoma> {
-        val sintoma = sintomaService.criaSintoma(sintoma.nome)
+        val sintoma = sintomaService.criaSintoma(sintoma.nome, sintoma.urlImagem)
         return ResponseEntity(sintoma, HttpStatus.CREATED)
     }
 
