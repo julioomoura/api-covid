@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import java.util.*
+import java.util.Optional
 
 @ContextConfiguration(classes = [UsuarioServiceImpl::class])
 
@@ -58,12 +58,13 @@ class UsuarioServiceImplTest {
     }
 
     @Test
+
     fun `validate find by id` () {
         val found = service.findById("cpf")
 
         assertThat(found).isNotNull
     }
-
+  
     @Test
     fun `validate find by invalid id throw NaoEncontradoException`() {
         Assertions.assertThrows(NaoEncontradoException::class.java) { service.findById("outrocpf") }
