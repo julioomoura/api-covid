@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/sintomas")
-@CrossOrigin
+@CrossOrigin(allowedHeaders = ["GET", "OPTIONS", "POST"])
 class SintomaController (
     private val sintomaService: SintomaServiceImpl
 ){
