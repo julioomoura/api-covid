@@ -14,7 +14,9 @@ import java.time.LocalDate
 class RegistroDeSintomaController (
     private val service: RegistroDeSintomaServiceImpl
 ) {
+
     @PostMapping("/usuarios/{cpf}/sintomas/{id}")
+    @CrossOrigin(allowedHeaders = ["OPTIONS", "POST"])
     fun registrarSintoma(@PathVariable cpf: String,
                          @PathVariable id: Long,
                          @RequestBody registroDeSintoma: RegistroDeSintomaDTO
@@ -24,6 +26,7 @@ class RegistroDeSintomaController (
     }
 
     @GetMapping("/usuarios/{cpf}/sintomas/registros")
+    @CrossOrigin(allowedHeaders = ["GET", "OPTIONS"])
     fun retornaRegistroDeSintoma(@PathVariable cpf: String,
                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)@RequestParam data: LocalDate): ResponseEntity<RegistroDeSintoma> {
         val registroDeSintoma = service.retornaRegistroDeSintomaPorUsuarioEData(cpf, data)

@@ -15,12 +15,14 @@ class SintomaController (
 ){
 
     @GetMapping
+    @CrossOrigin(allowedHeaders = ["OPTIONS", "GET"])
     fun retornaSintomas(): ResponseEntity<MutableIterable<Sintoma>> {
         val sintomas = sintomaService.retornaSintomas()
         return ResponseEntity(sintomas, HttpStatus.OK)
     }
 
     @PostMapping
+    @CrossOrigin(allowedHeaders = ["OPTIONS", "POST"])
     fun criaSintoma(@RequestBody sintoma: SintomaDTO): ResponseEntity<Sintoma> {
         val sintoma = sintomaService.criaSintoma(sintoma.nome, sintoma.urlImagem)
         return ResponseEntity(sintoma, HttpStatus.CREATED)

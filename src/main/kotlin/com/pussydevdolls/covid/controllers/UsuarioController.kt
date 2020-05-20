@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(allowedHeaders = ["OPTIONS", "POST"])
 class UsuarioController (
     private val usuarioService: UsuarioServiceImpl
 ){
 
     @PostMapping("/{cpf}")
+    @CrossOrigin(allowedHeaders = ["OPTIONS", "POST"])
     fun criaUsuario(@PathVariable cpf: String): ResponseEntity<Usuario> {
         val usuario = usuarioService.criaUsuario(cpf)
         return ResponseEntity(usuario, HttpStatus.OK)
