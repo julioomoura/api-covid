@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
 @RestController
-@CrossOrigin
+@CrossOrigin(allowedHeaders = ["GET", "OPTIONS", "POST"])
 class RegistroDeSintomaController (
     private val service: RegistroDeSintomaServiceImpl
 ) {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin
+@CrossOrigin(allowedHeaders = ["OPTIONS", "POST"])
 class UsuarioController (
     private val usuarioService: UsuarioServiceImpl
 ){
