@@ -15,20 +15,6 @@ class RegistroDeSintomaRepositoryTest {
     @Autowired
     private lateinit var repository: RegistroDeSintomaRepository
 
-    @Test
-    fun `validate find by usuario cpf and data `() {
-        val registroDeSintoma = factoryRegistroDeSintoma()
-        repository.save(registroDeSintoma)
-
-        val found = repository.findByUsuarioCpfAndData("12345678910", LocalDate.now())
-
-        assertThat(found).isPresent
-        assertThat(found.get().nivel).isEqualTo(0)
-        assertThat(found.get().data).isEqualTo(LocalDate.now())
-        assertThat(found.get().usuario!!.cpf).isEqualTo("12345678910")
-        assertThat(found.get().sintoma!!.nome).isEqualTo("Febre")
-    }
-
     private fun factoryRegistroDeSintoma(): RegistroDeSintoma {
         return RegistroDeSintoma().apply {
             this.data = LocalDate.now()
