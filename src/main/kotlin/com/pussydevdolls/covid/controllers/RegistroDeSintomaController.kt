@@ -28,8 +28,8 @@ class RegistroDeSintomaController (
     @GetMapping("/usuarios/{cpf}/sintomas/registros")
     @CrossOrigin(allowedHeaders = ["GET", "OPTIONS"])
     fun retornaRegistroDeSintoma(@PathVariable cpf: String,
-                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)@RequestParam data: LocalDate): ResponseEntity<RegistroDeSintoma> {
-        val registroDeSintoma = service.retornaRegistroDeSintomaPorUsuarioEData(cpf, data)
+                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)@RequestParam data: LocalDate): ResponseEntity<List<RegistroDeSintoma>> {
+        val registrosDeSintoma = service.retornaRegistroDeSintomaPorUsuarioEData(cpf, data)
         return ResponseEntity(registroDeSintoma, HttpStatus.OK)
     }
 }

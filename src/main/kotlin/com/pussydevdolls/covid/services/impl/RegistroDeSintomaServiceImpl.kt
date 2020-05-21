@@ -39,7 +39,7 @@ class RegistroDeSintomaServiceImpl(
         return repository.save(registro)
     }
 
-    override fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): RegistroDeSintoma {
+    override fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): List<RegistroDeSintoma> {
         return repository.findByUsuarioCpfAndData(cpf, data).orElseThrow {
             NaoEncontradoException("Registro de sintoma não encontrado")
         }

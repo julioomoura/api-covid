@@ -6,5 +6,5 @@ import java.time.LocalDate
 
 interface RegistroDeSintomaService {
     fun registrarSintoma(cpf: String, id: Long, registroDeSintoma: RegistroDeSintomaDTO): RegistroDeSintoma
-    fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): RegistroDeSintoma
+    fun retornaRegistroDeSintomaPorUsuarioEData(cpf: String, data: LocalDate): List<RegistroDeSintoma>
 }
