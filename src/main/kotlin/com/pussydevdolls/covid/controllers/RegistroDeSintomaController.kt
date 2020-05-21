@@ -30,6 +30,6 @@ class RegistroDeSintomaController (
     fun retornaRegistroDeSintoma(@PathVariable cpf: String,
                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)@RequestParam data: LocalDate): ResponseEntity<List<RegistroDeSintoma>> {
         val registrosDeSintoma = service.retornaRegistroDeSintomaPorUsuarioEData(cpf, data)
-        return ResponseEntity(registroDeSintoma, HttpStatus.OK)
+        return ResponseEntity(registrosDeSintoma, HttpStatus.OK)
     }
 }
